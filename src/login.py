@@ -13,6 +13,9 @@ def login():
 window = Tk()
 window.title("Login Screen")
 
+# Set the initial size of the window
+window.geometry("400x200")
+
 # Create username label and entry field
 username_label = Label(window, text="Username:")
 username_label.pack()
