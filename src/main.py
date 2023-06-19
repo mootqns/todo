@@ -1,9 +1,11 @@
+# complete by july 19th 
+
 import tkinter as tk
 from tkinter import messagebox
 
 root = tk.Tk()
 root.geometry("400x300")
-root.title("Minimal Note Taker")
+root.title("notes app")
 
 note_text = tk.Text(root)
 note_text.pack(fill=tk.BOTH, expand=True)
