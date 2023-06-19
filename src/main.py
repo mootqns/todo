@@ -1,19 +1,24 @@
 import tkinter as tk
-
-def toggle_fullscreen(event):
-    # Toggle fullscreen mode
-    root.attributes("-fullscreen", not root.attributes("-fullscreen"))
+from tkinter import messagebox
 
 root = tk.Tk()
+root.geometry("400x300")
+root.title("Minimal Note Taker")
 
-# Bind Escape key to exit fullscreen mode
-root.bind("<Escape>", toggle_fullscreen)
+note_text = tk.Text(root)
+note_text.pack(fill=tk.BOTH, expand=True)
 
-# Create a Text widget
-text_box = tk.Text(root)
-text_box.pack(fill="both", expand=True)
+def save_note():
+    note_content = note_text.get("1.0", tk.END)
+    with open("note.txt", "w") as file:
+        file.write(note_content)
+    messagebox.showinfo("Note Saved", "The note has been saved successfully.")
 
-# Configure the root window for fullscreen
-root.attributes("-fullscreen", True)
+menubar = tk.Menu(root)
+root.config(menu=menubar)
+
+file_menu = tk.Menu(menubar)
+menubar.add_cascade(label="File", menu=file_menu)
+file_menu.add_command(label="Save", command=save_note)
 
 root.mainloop()
